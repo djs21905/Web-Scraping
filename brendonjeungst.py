@@ -36,32 +36,48 @@ def parse_excel(excel_file_name):
         
 def find_unique(list1,list2):
 
-        for item in list2:
-                list1.append(item)
+        list1 = list1 + list2
         final = []        
         while len(list1) > 0:
                 popped = list1.pop()
-                
-                for num, x in enumerate(list1):                        
-                        if popped[0][0] == x[0][0]:
-                                del list1[num]
+                for index, gene in enumerate(list1):                        
+                        if popped[0][0] == gene[0][0]:
+                                del list1[index]
                                 popped = ''
                                 break                             
                 final.append(popped)
-                for num,x in enumerate(final):
-                        if x == '':
-                                del final[num]
-        
+                
+                for index, gene in enumerate(final):
+                        if gene == '':
+                                del final[index] 
         return final
+
+
+def write_to_excel(final,file_name):
+
+        new_wb = openpyxl.Workbook()
+        new_wb.get_sheet_names()
+        sheet = new_wb.active
+
+        rowNum = 1
+        for item in final:
+                print(item[0][0])
+                sheet.cell(row = rowNum , column = 1).value = str(item[0][0])
+                sheet.cell(row = rowNum , column = 2).value = float(item[0][1])
+                sheet.cell(row = rowNum , column = 3).value = str(item[1]) 
+                rowNum += 1
+        new_wb.save(file_name +'.xlsx')
+
+        
+        
 
 # Prompts the user to select two excel files
 file_one = input('Type the wild type file name: ')
 file_two = input('Type the mutant file name: ')
 
-a = find_unique(parse_excel(file_one), parse_excel(file_two))
 
-for item in a:
-        print (str(item[0][0]) + '     |     ' + str(item[0][1]) + '    |    ' + str(item[1]))
+final_list = find_unique(parse_excel(file_one), parse_excel(file_two))
+write_to_excel(final_list, file_one + file_two)
 
 
 
