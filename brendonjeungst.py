@@ -1,12 +1,12 @@
 import openpyxl
 from openpyxl.utils import get_column_letter
-from collections import Counter
+
 
 '''
 Written on 4-20-17
-Function that takes a string argument as the filename of an excel spreadsheet.  
-Before running the script make sure all values falling under the Log2 column are integers.
-Please write all of your filenames in lowercase without spaces to prevent potential runtime errors. 
+Script functions to load two excel files , extract the data , manipulate the data accordingly.
+The unique values are then written to a new excel file.
+
 '''
 def parse_excel(excel_file_name):
 
