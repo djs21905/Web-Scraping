@@ -13,7 +13,7 @@ soup = BeautifulSoup(r.text)
 # Finds all instances of a div with a specific class --> appends each instance to a list
 links = soup.find_all('div', {"class": "yt-lockup-content"})
 
-# Iterates through the list , finds the links and appends them to to final_list
+# Iterates through the list , finds the links and appends them to final_list
 final_list = []
 for item in links:
     link = item.find('a')
