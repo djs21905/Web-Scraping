@@ -23,13 +23,23 @@ for item in links:
 minutes = input("Enter minute: ")
 seconds = input("Enter seconds: ")
 
+
+# Prints Link to Song
 print("https://soundcloud.com" + final_list[0] + '#t=' + minutes + 'm' + seconds+ 's')
 
 r2 = requests.get("https://soundcloud.com" + final_list[0] + '#t=' + minutes + 'm' + seconds+ 's')
 test = re.findall(r'soundcloud.com/tracks/\d{3,9}', r2.text)
 
-for item in test:
-    print(item)
+
+# Finds the URI
+urid = re.findall(r'\d{1,10}', test[0])
+print(int(urid[0]))
+
+
+# Finds the Image
+img = re.findall(r'https://i1.sndcdn.com/artworks-.*.jpg', r2.text)
+print(img[1])
+
 
 
 
