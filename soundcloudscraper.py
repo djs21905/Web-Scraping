@@ -37,7 +37,7 @@ print(int(urid[0]))
 
 
 # Finds the Image
-img = re.findall(r'https://i1.sndcdn.com/artworks-.*.jpg', r2.text)
+img = re.findall(r'https://i1.sndcdn.com/.*-.*.jpg', r2.text)
 print(img[1])
 
 
